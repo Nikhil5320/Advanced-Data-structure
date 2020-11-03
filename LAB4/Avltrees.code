@@ -228,25 +228,34 @@ void preOrder(Node *root)
 
 int main()
 {
-	int n, val;
-	cout<<"Enter the number of nodes in the AVL tree: \n";
-	cin>>n;
+	int n, val,s=0;
+	
 	Node *root = NULL;
-	cout<<"Enter the values of AVL tree to be entered: \n";
-	for(int i=0; i<n; i++){
-		cin>>val;
-		root = insert(root,val);
+	
+	
+	while(true){
+	    cout<<"\n\nEnter 1. for inseting, 2. for deleting, 0 to exit....\n";
+	    cin>>s;
+	
+	 switch(s){
+	    case 1: cout<<"Enter the values of AVL tree to be entered: \n";
+	            cin>>val;
+	        	root = insert(root,val);
+	        	cout << "Preorder traversal of the constructed AVL tree after inserting "<<val<<" is: \n";
+            	preOrder(root);
+            	break;
+	    case 2: cout<<"\nEnter the value to be deleted: \n";
+             	cin>>val;
+            	root = deleteNode(root,val);
+            	cout << "Preorder traversal of the AVL tree after deleting "<<val<<" is: \n";
+            	preOrder(root);
+            	break;
+        case 0: return 0;
+        default : cout<<"Enter either 1,2 or 0....\n"
+	 }
 	}
 
-	cout << "Preorder traversal of the constructed AVL tree is: \n";
-	preOrder(root);
 
-	cout<<"\nEnter the value to be deleted: \n";
-	cin>>val;
-	root = deleteNode(root,val);
-
-	cout << "Preorder traversal after deletion of 10: \n";
-	preOrder(root);
 
 	return 0;
 }
